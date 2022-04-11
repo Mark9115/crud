@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DAOWorkers implements WorkersDAO {
+    /**
+     * Helps to find the correct worker by id
+     */
     @Override
     public Workers find(String id) throws SQLException {
         String name = "", last_name = "";
@@ -36,6 +39,9 @@ public class DAOWorkers implements WorkersDAO {
         return new Workers(id_worker, id_position, name, last_name);
     }
 
+    /**
+     * Helps to find all workers from Workers table
+     */
     @Override
     public List<Workers> findAll() throws SQLException {
         String name, last_name, name_position;
@@ -66,6 +72,9 @@ public class DAOWorkers implements WorkersDAO {
         return list;
     }
 
+    /**
+     * Adds new Worker
+     */
     @Override
     public boolean save(Workers o) throws SQLException {
 
@@ -85,6 +94,9 @@ public class DAOWorkers implements WorkersDAO {
         return updated;
     }
 
+    /**
+     * Method with transaction which inserts into Workers and Projects_to_workers tables at the same time
+     */
     public void saveReturnVal(Workers worker, Projects project) throws SQLException {
         Connection connection = connect();
         try {
@@ -127,6 +139,9 @@ public class DAOWorkers implements WorkersDAO {
 
     }
 
+    /**
+     * Edits the Worker by id
+     */
     @Override
     public boolean update(Workers o) throws SQLException {
 
@@ -148,6 +163,9 @@ public class DAOWorkers implements WorkersDAO {
         return updated;
     }
 
+    /**
+     * Deletes the Worker by id
+     */
     @Override
     public boolean delete(Workers o) throws SQLException {
         String sql = "DELETE FROM users.users.workers WHERE id = ?";
@@ -165,6 +183,9 @@ public class DAOWorkers implements WorkersDAO {
         return updated;
     }
 
+    /**
+     * Method helper to connect the DB
+     */
     private Connection connect() throws SQLException {
         try {
             Class.forName(DbUtil.driver);

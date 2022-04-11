@@ -17,6 +17,9 @@ public class DAOProjectsToUsers implements ProjectsToUsersDAO {
         return null;
     }
 
+    /**
+     * Inserting in the mediator table 2 ids from Projects and Workers tables
+     */
     @Override
     public boolean save(ProjectsToUsers o) throws SQLException {
         Connection connection = connect();

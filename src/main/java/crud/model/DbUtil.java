@@ -1,5 +1,8 @@
 package crud.model;
 
+/**
+ * Class helper to connect the DB
+ */
 public class DbUtil {
 
     public static String url = "jdbc:postgresql://localhost/users";

@@ -13,6 +13,9 @@ public class DAOPositions implements PositionsDAO {
         return null;
     }
 
+    /**
+     * Selecting all the information from Positions table
+     */
     @Override
     public List<Positions> findAll() throws SQLException {
         String name_position;

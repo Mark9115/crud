@@ -13,6 +13,9 @@ public class DAOProjects implements ProjectsDAO {
         return null;
     }
 
+    /**
+     * Selecting all the information from Projects table
+     */
     @Override
     public List<Projects> findAll() throws SQLException {
         String description;

@@ -1,8 +1,9 @@
 package tests;
 
 import crud.controller.WorkersController;
-import crud.model.DAOWorkers;
-import crud.model.objects.Workers;
+import crud.entity.Positions;
+import crud.DAO.impl.WorkersDAOImpl;
+import crud.entity.Workers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -18,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +29,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AllTheTests extends Mockito {
 
     @Mock
-    DAOWorkers dao;
+    WorkersDAOImpl dao;
     @Mock
     HttpServletRequest request;
     @Mock
     HttpServletResponse response;
     @Mock
     RequestDispatcher requestDispatcher;
+
 
     @Test
     public void givenIdProjectAndIdPositions_WhenCreatingChainOfWorker_ThenWaitingForAnswer() throws IOException, ServletException {
@@ -65,7 +66,7 @@ public class AllTheTests extends Mockito {
         when(request.getParameter("id")).thenReturn(id);
 
         when(request.getServletPath()).thenReturn("/edit");
-        when(request.getRequestDispatcher("editForm.jsp")).thenReturn(requestDispatcher);
+        when(request.getRequestDispatcher("resources/views/editForm.jsp")).thenReturn(requestDispatcher);
 
 
         StringWriter sw = new StringWriter();
@@ -82,7 +83,7 @@ public class AllTheTests extends Mockito {
     @Test
     public void givenTheFormWithProject_WhenCreatingListProjectAndPositionsInServletMethod_ThenWaitingForAnswer() throws ServletException, IOException {
         when(request.getServletPath()).thenReturn("/newWithProjectForm");
-        when(request.getRequestDispatcher("/newWithProjectForm.jsp")).thenReturn(requestDispatcher);
+        when(request.getRequestDispatcher("resources/views/newWithProjectForm.jsp")).thenReturn(requestDispatcher);
 
 
         StringWriter sw = new StringWriter();
@@ -99,7 +100,7 @@ public class AllTheTests extends Mockito {
     @Test
     public void givenTheForm_WhenCreatingListInServletMethod_ThenWaitingForAnswer() throws ServletException, IOException {
         when(request.getServletPath()).thenReturn("/new");
-        when(request.getRequestDispatcher("/newForm.jsp")).thenReturn(requestDispatcher);
+        when(request.getRequestDispatcher("resources/views/newForm.jsp")).thenReturn(requestDispatcher);
 
 
         StringWriter sw = new StringWriter();
@@ -151,12 +152,19 @@ public class AllTheTests extends Mockito {
     }
 
     @Test
-    public void givenMainPage_WhenFindAllWorkers_ThenMakeSureThatTryBlockPassed() throws SQLException, ServletException, IOException {
+    public void givenMainPage_WhenFindAllWorkers_ThenMakeSureThatTryBlockPassed() throws ServletException, IOException {
 
         List<Workers> list = new ArrayList<>();
-        Workers firstWorker = new Workers(1, 1, "John", "Johnson");
-        Workers secondWorker = new Workers(2, 2, "Name", "LastName");
-        Workers thirdWorker = new Workers(3, 3, "Waugh", "Alie");
+        Positions pos1 = new Positions();
+        Positions pos2 = new Positions();
+        Positions pos3 = new Positions();
+        pos1.setId(1);
+        pos2.setId(2);
+        pos3.setId(3);
+
+        Workers firstWorker = new Workers(1, pos1, "John", "Johnson");
+        Workers secondWorker = new Workers(2, pos2, "Name", "LastName");
+        Workers thirdWorker = new Workers(3, pos3, "Waugh", "Alie");
 
         list.add(firstWorker);
         list.add(secondWorker);
@@ -167,7 +175,7 @@ public class AllTheTests extends Mockito {
         List<Workers> empList = dao.findAll();
 
         when(request.getServletPath()).thenReturn("/main");
-        when(request.getRequestDispatcher("main.jsp")).thenReturn(requestDispatcher);
+        when(request.getRequestDispatcher("resources/views/main.jsp")).thenReturn(requestDispatcher);
         when(request.getAttribute("list")).thenReturn(empList);
 
 

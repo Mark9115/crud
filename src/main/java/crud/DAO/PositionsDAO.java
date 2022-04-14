@@ -1,6 +1,6 @@
-package crud.model.DAO;
+package crud.DAO;
 
-import crud.model.objects.Positions;
+import crud.entity.Positions;
 
 public interface PositionsDAO extends DAO<Positions,String> {
 }

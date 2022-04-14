@@ -5,7 +5,7 @@
     <title>Crud приложение</title>
     <meta charset="UTF-8">
     <style>
-        <%@include file="/resources/css/main.css"%>
+        <%@include file="../css/main.css"%>
     </style>
 </head>
 <body>

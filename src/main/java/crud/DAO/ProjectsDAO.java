@@ -1,6 +1,6 @@
-package crud.model.DAO;
+package crud.DAO;
 
-import crud.model.objects.Projects;
+import crud.entity.Projects;
 
 public interface ProjectsDAO extends DAO<Projects,String> {
 }

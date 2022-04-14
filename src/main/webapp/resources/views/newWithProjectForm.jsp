@@ -4,12 +4,12 @@
 <head>
     <title>Новый Сотрудник</title>
     <style>
-        <%@include file="/resources/css/form.css"%>
+        <%@include file="../css/form.css"%>
     </style>
 </head>
 <body>
+<form action="${pageContext.request.contextPath}/newWithProject">
 
-<form action="${pageContext.request.contextPath}/insert">
     <fieldset>
         <legend>Создание нового сотрудника</legend>
         <label for="name">Имя:</label>
@@ -22,6 +22,12 @@
         <select id="id_position" name="id_position">
             <c:forEach var="position" items="${requestScope.positionsList}">
                 <option value="${position.id}">${position.name_position}</option>
+            </c:forEach>
+        </select><br>
+        <label for="id_project">Проект:</label>
+        <select id="id_project" name="id_project">
+            <c:forEach var="projects" items="${requestScope.projectsList}">
+                <option value="${projects.id}">${projects.description}</option>
             </c:forEach>
         </select><br>
         <p><input type="submit" value="Отправить информацию"></p>

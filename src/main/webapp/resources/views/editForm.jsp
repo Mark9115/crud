@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Форма изменения</title>
     <style>
-        <%@include file="/resources/css/form.css"%>
+        <%@include file="../css/form.css"%>
     </style>
 </head>
 <body>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        <%@include file="/resources/css/table.css"%>
+        <%@include file="../css/table.css"%>
     </style>
     <title>Title</title>
 </head>
@@ -23,7 +23,7 @@
     <c:forEach var="l" items="${requestScope.list}">
         <tr>
             <td>${l.id}</td>
-            <td>${l.name_position}</td>
+            <td>${l.position.name_position}</td>
             <td>${l.name}</td>
             <td>${l.last_name}</td>
             <td><a href="${pageContext.request.contextPath}/delete?id=<c:out value='${l.id}' />">удалить</a></td>
